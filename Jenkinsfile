@@ -24,8 +24,8 @@ pipeline {
     stage ('build and publish image') {
       steps {
           checkout scm
-          docker.withRegistry('https://registry.example.com', 'credentials-id') {
-          def customImage = docker.build("my-image:${env.BUILD_ID}")
+          docker.withRegistry('', 'registryCredential') {
+          def customImage = docker.build("kserge2001/devops-pipeline:${env.BUILD_ID}")
           customImage.push()
     }
 }
