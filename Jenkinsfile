@@ -32,6 +32,10 @@ pipeline {
     }
 }
     }
-      
+    stage ('build the cd job') {
+      steps {
+        build 'devops_CD'
+      }
+    }
  }
 }
