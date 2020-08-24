@@ -21,7 +21,7 @@ pipeline {
        sh 'mvn test'
       }
     }
-    node {
+    stage ('build and publish image') {
     checkout scm
 
     docker.withRegistry('https://registry.example.com', 'credentials-id') {
