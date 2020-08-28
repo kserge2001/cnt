@@ -38,7 +38,7 @@ pipeline {
          sshPublisher(publishers: [sshPublisherDesc(configName: 'ansible-host', transfers: [sshTransfer(cleanRemote: false, excludes: '', execCommand: 'ansible-playbook /etc/ansible/lamp.yml')]) 
            
         }
-      
+        }
       
       }
 }
