@@ -34,6 +34,7 @@ pipeline {
     }
     stage("SSH Steps for ansible") {
       steps{
+        script {
         def remote = [:]
         remote.name = "node"
         remote.host = "node.abc.com"
@@ -42,6 +43,7 @@ pipeline {
         remote.user = userName
         remote.password = password
             sshCommand remote: remote, command: 'ansible-playbook /etc/ansible/deploy.yml'
+    }
     }
     }       
  }
