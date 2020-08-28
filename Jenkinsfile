@@ -34,6 +34,10 @@ pipeline {
     }
     stage("SSH Steps for ansible") {
       steps{
+        def remote = [:]
+        remote.name = "node"
+        remote.host = "node.abc.com"
+        remote.allowAnyHosts = true
     withCredentials([usernamePassword(credentialsId: 'sshUserAcct', passwordVariable: 'password', usernameVariable: 'userName')]) {
         remote.user = userName
         remote.password = password
