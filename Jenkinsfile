@@ -33,6 +33,7 @@ pipeline {
 }
     }
     stage("SSH Steps for ansible") {
+      steps{
     withCredentials([usernamePassword(credentialsId: 'sshUserAcct', passwordVariable: 'password', usernameVariable: 'userName')]) {
         remote.user = userName
         remote.password = password
@@ -41,4 +42,5 @@ pipeline {
     }
     }       
  }
+}
 }
