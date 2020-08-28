@@ -37,7 +37,6 @@ pipeline {
     withCredentials([usernamePassword(credentialsId: 'sshUserAcct', passwordVariable: 'password', usernameVariable: 'userName')]) {
         remote.user = userName
         remote.password = password
-            writeFile file: 'test.sh', text: 'ls'
             sshCommand remote: remote, command: 'ansible-playbook /etc/ansible/deploy.yml'
     }
     }       
