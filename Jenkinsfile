@@ -32,20 +32,14 @@ pipeline {
     }
 }
     }
-    stage("SSH Steps for ansible") {
-      steps{
-        script {
-        def remote = [:]
-        remote.name = "node"
-        remote.host = "18.207.235.74"
-        remote.allowAnyHosts = true
-    withCredentials([usernamePassword(credentialsId: 'sshUserAcct', passwordVariable: 'password', usernameVariable: 'userName')]) {
-        remote.user = userName
-        remote.password = password
-            sshCommand remote: remote, command: 'ansible-playbook /etc/ansible/deploy.yml'
-    }
-    }
-    }       
- }
+    stage('deploy'){
+        steps {
+            
+         sshPublisher(publishers: [sshPublisherDesc(configName: 'ansible-host', transfers: [sshTransfer(cleanRemote: false, excludes: '', execCommand: 'ansible-playbook /etc/ansible/dep.yml', execTimeout: 120000, flatten: false, makeEmptyDirs: false, noDefaultExcludes: false, patternSeparator: '[, ]+', remoteDirectory: '', remoteDirectorySDF: false, removePrefix: '', sourceFiles: '')], usePromotionTimestamp: false, useWorkspaceInPromotion: false, verbose: false)]) 
+           
+        }
+      
+      
+      }
 }
 }
